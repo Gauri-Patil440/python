@@ -1,0 +1,314 @@
+
+constructor
+
+
+
+Basic Questions
+What is a constructor in Java?
+A constructor is a special member of a class used to initialize an object. It is automatically called when an object is created.
+
+Why do we use constructors?
+To initialize the instance variables of an object when the object is created.
+
+What are the rules for a constructor?
+
+Constructor name must be the same as the class name.
+
+It cannot have a return type.
+
+It is called automatically when an object is created.
+
+It can have parameters.
+
+It cannot be static, abstract, or final.
+
+Does a constructor have a return type?
+No. A constructor does not have any return type, not even void.
+
+When is a constructor called?
+When an object is created using the new keyword.
+
+Student s = new Student();
+
+Can a constructor be private?
+Yes. A private constructor prevents other classes from directly creating objects of that class.
+
+Can a constructor be overloaded?
+Yes. A class can have multiple constructors with different parameter lists.
+
+class Student {
+    Student() { }
+
+    Student(String name) { }
+
+    Student(String name, int age) { }
+}
+
+Can a constructor be overridden?
+No. Constructors are not inherited, so they cannot be overridden.
+
+Can a constructor be inherited?
+No. Constructors belong to their own class and are not inherited by subclasses.
+
+Can a constructor be static?
+No. A constructor is associated with object creation, while static members belong to the class.
+
+Types of Constructors
+What are the types of constructors in Java?
+
+Commonly discussed types are:
+
+Default constructor
+
+No-argument constructor
+
+Parameterized constructor
+
+Copy constructor
+
+What is a no-argument constructor?
+
+A constructor that does not accept any parameters.
+
+class Student {
+    Student() {
+        System.out.println("Constructor called");
+    }
+}
+
+What is a parameterized constructor?
+
+A constructor that accepts one or more parameters.
+
+class Student {
+    String name;
+
+    Student(String name) {
+        this.name = name;
+    }
+}
+
+What is a default constructor?
+
+If you don't declare any constructor, the Java compiler automatically provides a constructor with no parameters. This is commonly called the default constructor.
+
+What is a copy constructor?
+
+A constructor that creates a new object by copying values from another object of the same class.
+
+Student(Student s) {
+    this.name = s.name;
+}
+
+Java does not provide a special built-in copy-constructor feature; we define such a constructor ourselves.
+
+Important Interview Questions
+What happens if we don't create a constructor?
+
+If the class has no constructor declared, the compiler provides a default no-argument constructor.
+
+What happens if we create a parameterized constructor but no no-argument constructor?
+
+The compiler will not provide a no-argument constructor automatically.
+
+class Student {
+    Student(String name) {
+    }
+}
+
+Student s = new Student(); // ❌ Compilation error
+
+Can a constructor call another constructor?
+
+Yes. We use this().
+
+class Student {
+    Student() {
+        this("Rahul");
+    }
+
+    Student(String name) {
+        System.out.println(name);
+    }
+}
+
+What is this() in a constructor?
+
+this() is used to call another constructor of the same class.
+
+What is super() in a constructor?
+
+super() is used to call the constructor of the parent class.
+
+class Animal {
+    Animal() {
+        System.out.println("Animal");
+    }
+}
+
+class Dog extends Animal {
+    Dog() {
+        super();
+        System.out.println("Dog");
+    }
+}
+
+Can we use both this() and super() in the same constructor?
+
+No. Both must be the first statement of a constructor, so they cannot both be used in the same constructor.
+
+Where must this() or super() appear?
+
+It must be the first statement inside the constructor.
+
+What happens if we don't write super() in a child constructor?
+
+Java automatically inserts a call to the parent's no-argument constructor, if one is accessible.
+
+Can a constructor call a method?
+
+Yes.
+
+class Student {
+    Student() {
+        display();
+    }
+
+    void display() {
+        System.out.println("Hello");
+    }
+}
+
+Can a constructor be overloaded?
+
+Yes.
+
+Student() { }
+
+Student(String name) { }
+
+Student(String name, int age) { }
+
+Can a constructor be final?
+
+No. Constructors cannot be final.
+
+Can a constructor be abstract?
+
+No. Constructors cannot be abstract.
+
+Can a constructor be synchronized?
+
+No. Constructors cannot be declared synchronized.
+
+Can a constructor be native?
+
+No. Constructors cannot be declared native.
+
+Can we use return inside a constructor?
+
+You cannot return a value from a constructor. A bare return; can be used to exit the constructor early.
+
+Tricky Interview Questions
+Is a constructor a method?
+
+Technically, no. Although it looks similar to a method, a constructor has special rules and is specifically used for object initialization.
+
+Can we create an object without calling a constructor?
+
+In normal object creation with new, a constructor is invoked. However, Java provides special mechanisms such as deserialization and reflection that can create objects under different rules.
+
+Can a constructor be overloaded with different parameter types?
+
+Yes.
+
+Student(int age) { }
+
+Student(String name) { }
+
+Can a constructor have the same name as another constructor?
+
+Yes, provided their parameter lists are different. This is constructor overloading.
+
+Can a constructor be called directly like a method?
+
+No.
+
+Student(); // ❌
+
+Constructors are invoked during object creation or through constructor chaining such as this() and super().
+
+What is constructor chaining?
+
+When one constructor calls another constructor, it is called constructor chaining.
+
+It can happen:
+
+Within the same class using this()
+
+Between parent and child classes using super()
+
+Which executes first: parent constructor or child constructor?
+
+The parent constructor executes first, followed by the child constructor.
+
+Parent Constructor
+       ↓
+Child Constructor
+
+Can an abstract class have a constructor?
+
+Yes. An abstract class can have a constructor, and it is called when a subclass object is created.
+
+Can an interface have a constructor?
+
+No. Interfaces do not have constructors because they cannot be instantiated.
+
+Can an enum have a constructor?
+
+Yes. Enum constructors exist, but they cannot be called directly by using new.
+
+Very Common Output Question
+Question: What is the output?
+
+class A {
+    A() {
+        System.out.println("A");
+    }
+}
+
+class B extends A {
+    B() {
+        System.out.println("B");
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        B obj = new B();
+    }
+}
+
+Answer:
+
+A
+B
+
+Because the parent constructor executes before the child constructor.
+
+⭐ 5 questions you should definitely prepare
+If you're preparing for a Java fresher interview, make sure you can confidently answer:
+
+What is a constructor?
+
+Constructor vs method?
+
+What is constructor overloading?
+
+Difference between this() and super()?
+
+What happens when we don't define a constructor?
+
+If you want, I can also give you 30 Java constructor MCQs with answers for interview practice.
+
+

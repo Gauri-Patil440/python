@@ -13,6 +13,7 @@ secondLargest = arr[0]
 
 for num in arr:
     if num > largest:
+        
 	   secondlargest = largest
 	   largest = num
        
